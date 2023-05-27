@@ -7,6 +7,7 @@ class Sprite:
         self.__start_position__ = start_position
         self.__size__ = size
         self.__image__ = image
+        self.__angle__ = 0
 
     def get_coordinates(self) -> tuple[int, int]:
         return self.__rect__.x, self.__rect__.y
@@ -21,4 +22,7 @@ class Sprite:
 
     def get_rect(self) -> pygame.rect.Rect:
         return self.__rect__
-    
+
+    def rotate(self, angle: float) -> None:
+        self.__angle__ += angle
+        self.__image__ = pygame.transform.rotate(self.__image__, angle)
