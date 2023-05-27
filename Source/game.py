@@ -11,7 +11,7 @@ class Game:
         self.__screen__ = pygame.display.set_mode(constants.SCREEN_SIZE)
         self.__clock__ = pygame.time.Clock()
 
-        self.player = Sprite((100, 100), (100, 100), None)
+        self.player = Sprite((400, 500), (100, 100), constants.PLAYER_IMAGE)
 
         pygame.display.set_caption(constants.CAPTION)
 
@@ -22,11 +22,11 @@ class Game:
                     pygame.quit()
                     sys.exit()
 
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
-                        self.player.rotate(10)
+            self.player.rotate()
+            self.player.move(pygame.key.get_pressed())
 
-            pygame.draw.rect(self.__screen__, (255, 255, 255), self.player.get_rect())
+            self.__screen__.fill((255, 255, 255))
+            self.player.draw(self.__screen__)
 
             pygame.display.update()
             self.__clock__.tick(60)
